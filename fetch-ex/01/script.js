@@ -1,17 +1,28 @@
 async function fetchTodos() {
   // fetch("https://jsonplaceholder.typicode.com/todos")
-  //   .then((response) => response.json())
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+  //     return response.json();
+  //   })
   //   .then((todos) => {
   //     populateTodos(todos);
   //   })
-  //   .catch((error) => console.error("Error fetching todos:", error));
+  //   .catch((error) => {
+  //     console.error("Error fetching todos:", error);
+  //   });
   try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     const todos = await response.json();
     populateTodos(todos);
   } catch (error) {
-    console.error("Error fetching todos:", error);
+    console.error('Error fetching todos:', error);
   }
+
 }
 
 function populateTodos(todos) {
