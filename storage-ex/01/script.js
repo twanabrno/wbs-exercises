@@ -1,8 +1,7 @@
+const quotes = JSON.parse(localStorage.getItem("quotes")) || [];
+const quoteList = document.getElementById("quoteList");
 function loadQuotes() {
-  const quotes = JSON.parse(localStorage.getItem("quotes")) || [];
-  const quoteList = document.getElementById("quoteList");
   quoteList.innerHTML = "";
-
   quotes.forEach((quote) => {
     const li = document.createElement("li");
     li.textContent = quote;
@@ -18,7 +17,6 @@ document.getElementById("quoteForm").addEventListener("submit", function (e) {
   const newQuote = userInput.value.trim();
 
   if (newQuote !== "") {
-    let quotes = JSON.parse(localStorage.getItem("quotes")) || [];
     quotes.unshift(newQuote);
     localStorage.setItem("quotes", JSON.stringify(quotes));
 

@@ -1,3 +1,5 @@
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
 function createListItem(task) {
   const taskList = document.getElementById("taskList");
   const li = document.createElement("li");
@@ -19,20 +21,17 @@ function createListItem(task) {
 }
 
 function saveTask(task) {
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.unshift(task);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function deleteTask(taskId) {
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks = tasks.filter((task) => task.id !== taskId);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   document.getElementById(taskId).remove();
 }
 
 function loadTasks() {
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.forEach((task) => createListItem(task));
 }
 
